@@ -32,7 +32,7 @@ const services = [
     id: "03",
     tag: "SEGURIDAD",
     title: "Modo de Emergencia",
-    desc: "Traducción rápida y acceso a frases de auxilio predeterminadas para situaciones críticas.",
+    desc: "Sistema adaptado para casos de uso de emergencia.",
     icon: <AlertTriangle className="w-8 h-8 text-white" />,
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop",
   }
