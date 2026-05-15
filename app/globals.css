@@ -1,24 +1,32 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
+  /* Usamos los colores limpios de SilentHelp */
   --background: #faf8fc;
   --foreground: #1a202c;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* Mantenemos tus fuentes premium para no perder calidad */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
+
+/* ¡OJO! Eliminamos el bloque "@media (prefers-color-scheme: dark)" 
+  del original para que tu celular NO lo cambie a negro y 
+  siempre respete tu fondo blanco/crema.
+*/
 
 body {
-  background-color: var(--background);
+  background: var(--background);
   color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden; /* Esto arregla el error de que la pantalla se mueva hacia los lados en el celular */
 }
 
-/* Efecto de ruido sutil */
+/* Solo agregamos nuestra pequeña utilidad para la textura de las tarjetas moradas */
 @layer utilities {
   .bg-noise {
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
