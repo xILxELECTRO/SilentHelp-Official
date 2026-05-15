@@ -1,58 +1,58 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import StaggeredMenu from './StaggeredMenu'; 
-
-// Enlaces actualizados para SilentHelp
-// Navbar.tsx
-const menuLinks = [
-  { label: 'Inicio', link: '/' },
-  { label: 'Pilares', link: '/#beneficios' },
-  { label: 'Sobre nosotros', link: '/about' },
-  { label: 'Contáctanos', link: '/#contact' },
-];
+import Link from 'next/link';
+import StaggeredMenu from './StaggeredMenu'; // Asegúrate de que la ruta coincida con tu archivo
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  // Efecto para detectar si el usuario ha bajado en la página y cambiar el fondo
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Enlaces oficiales que programamos para tu menú
+  const menuLinks = [
+    { label: 'Inicio', link: '/' },
+    { label: 'Pilares', link: '/#beneficios' },
+    { label: 'Sobre nosotros', link: '/about' },
+    { label: 'Contáctanos', link: '/#contact' },
+  ];
+
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-purple-100 bg-[#faf8fc]/90 backdrop-blur-xl transition-all duration-300">
-      <div className="container mx-auto px-6 h-20 flex items-center justify-between relative">
+    <nav 
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
+        scrolled ? 'bg-[#faf8fc]/90 backdrop-blur-md border-b border-purple-100 py-4 shadow-sm' : 'bg-transparent py-6'
+      }`}
+    >
+      {/* justify-between es la clave: empuja un elemento a la izquierda y otro a la derecha */}
+      <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         
-        {/* --- 1. IZQUIERDA (ESPACIADOR) --- */}
-        <div className="hidden md:flex flex-1"></div>
+        {/* === LADO IZQUIERDO: LOGO === */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-105">
+            <Image 
+              src="/SLHP.png" 
+              alt="Logo SilentHelp" 
+              fill
+              className="object-contain"
+            />
+          </div>
+          {/* El texto se hace un poquito más pequeño en celular (text-xl) y normal en PC (md:text-2xl) */}
+          <span className="font-black text-xl md:text-2xl text-[#1a202c] tracking-tight">
+            Silent<span className="text-purple-600">Help</span>
+          </span>
+        </Link>
 
-        {/* --- 2. CENTRO: LOGO --- */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-            <a href="/" className="flex items-center gap-3 group">
-            
-            {/* Contenedor de Imagen adaptado a la paleta morada */}
-            <div className="relative w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl overflow-hidden border border-purple-200 shadow-[0_0_15px_rgba(147,51,234,0.15)] group-hover:shadow-[0_0_25px_rgba(147,51,234,0.3)] group-hover:scale-105 transition-all duration-300 flex items-center justify-center">
-                <Image 
-                src="/SLHP.png"
-                alt="Logo SilentHelp"
-                width={40}
-                height={40}
-                className="object-contain p-1"
-                priority
-                />
-            </div>
-
-            {/* Texto del Logo SilentHelp */}
-            <div className="flex flex-col">
-                <span className="text-xl md:text-2xl font-black tracking-tighter text-[#1a202c] leading-none group-hover:text-purple-600 transition-colors">
-                Silent<span className="text-purple-600">Help</span>
-                </span>
-            </div>
-            </a>
-        </div>
-
-        {/* --- 3. DERECHA: MENÚ --- */}
-        <div className="flex-1 flex justify-end z-20">
-           <StaggeredMenu 
-             items={menuLinks} 
-             menuButtonColor="#1a202c" // Texto oscuro para el botón
-             accentColor="#9333ea"     // Morado SilentHelp
-           />
+        {/* === LADO DERECHO: MENÚ === */}
+        <div className="flex items-center">
+           <StaggeredMenu items={menuLinks} />
         </div>
 
       </div>
