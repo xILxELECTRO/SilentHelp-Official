@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${inter.className} relative min-h-screen antialiased bg-[#faf8fc]`}>
+      <body className={`${inter.className} relative min-h-screen antialiased bg-[#faf8fc] text-[#1a202c] overflow-x-hidden w-full max-w-[100vw]`}>
         
         {/* Fondo decorativo sutil */}
         <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">

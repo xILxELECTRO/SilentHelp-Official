@@ -52,7 +52,7 @@ export default function PrivacyPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#faf8fc] text-[#1a202c] selection:bg-purple-500/30">
+    <main className="min-h-screen bg-[#faf8fc] text-[#1a202c] selection:bg-purple-500/30 overflow-x-hidden w-full max-w-[100vw]">
       <Navbar />
 
       <div className="pt-32 pb-20 px-6 container mx-auto max-w-7xl relative z-10">
