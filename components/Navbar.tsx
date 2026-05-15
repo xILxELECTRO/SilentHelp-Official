@@ -31,12 +31,16 @@ export default function Navbar() {
         scrolled ? 'bg-[#faf8fc]/90 backdrop-blur-md border-b border-purple-100 py-4 shadow-sm' : 'bg-transparent py-6'
       }`}
     >
-      {/* justify-between es la clave: empuja un elemento a la izquierda y otro a la derecha */}
+      {/* justify-between empuja el logo a la izquierda y el menú a la derecha */}
       <div className="container mx-auto px-6 max-w-7xl flex items-center justify-between">
         
-        {/* === LADO IZQUIERDO: LOGO === */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform group-hover:scale-105">
+        {/* === LADO IZQUIERDO: LOGO CON RECUADRO NEÓN REINTEGRADO === */}
+        <Link 
+          href="/" 
+          /* Agregamos el recuadro neón con border, sombra (shadow) y fondo sutil */
+          className="flex items-center gap-3 group px-4 py-2.5 rounded-2xl border border-purple-500/30 bg-white/60 shadow-[0_0_15px_rgba(168,85,247,0.15)] backdrop-blur-sm transition-all duration-300 hover:border-purple-500/60 hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] hover:-translate-y-0.5"
+        >
+          <div className="relative w-8 h-8 md:w-9 md:h-9 transition-transform group-hover:scale-105">
             <Image 
               src="/SLHP.png" 
               alt="Logo SilentHelp" 
@@ -44,8 +48,8 @@ export default function Navbar() {
               className="object-contain"
             />
           </div>
-          {/* El texto se hace un poquito más pequeño en celular (text-xl) y normal en PC (md:text-2xl) */}
-          <span className="font-black text-xl md:text-2xl text-[#1a202c] tracking-tight">
+          {/* Ajuste leve de tamaño de texto para celular y PC */}
+          <span className="font-black text-lg md:text-xl text-[#1a202c] tracking-tight">
             Silent<span className="text-purple-600">Help</span>
           </span>
         </Link>
